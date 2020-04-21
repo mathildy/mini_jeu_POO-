@@ -1,5 +1,4 @@
 
-
 class Player
     attr_accessor :name, :life_points, :damage_nb, :player
 
@@ -57,28 +56,31 @@ class HumanPlayer < Player
          
         if weapon_dice > @weapon_level
             puts "Youhou ! elle est meilleure que ton arme actuelle : tu la prends."
-         
+         @weapon_level = weapon_dice
         else 
             puts "M@*!$... elle n'est pas mieux que ton arme actuelle.."
         end
+    end
 
-        def search_health_pack
-            dice = rand(1..6)
+    def search_health_pack
+        dice = rand(1..6)
             if dice == 1
                 puts "Tu as trouvé : nada"
-            elsif dice <= 2 || dice <= 5
+            elsif dice >= 2 || dice <= 5
                 puts "Bravo, tu as trouvé un pack de +50 points de vie !"
                 @life_points = @life_points + 50
             else dice == 6
                 puts "Waow, tu as trouvé un pack de +80 points de vie !"
                 @life_points = @life_points + 80
-            end 
-            
-        end 
-   
+            end
+                if @life_points > 100
+                    @life_points = @life_points + (100 - @life_points) 
+                end 
+        return @life_points   
     end 
-
 
 end 
 
+
+ 
 
